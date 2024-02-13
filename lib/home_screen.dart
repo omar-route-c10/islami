@@ -3,7 +3,10 @@ import 'package:islami/tabs/hadeth/hadeth_tab.dart';
 import 'package:islami/tabs/quran/quran_tab.dart';
 import 'package:islami/tabs/radio/radio_tab.dart';
 import 'package:islami/tabs/sebha/sebha_tab.dart';
+import 'package:islami/tabs/settings/settings_provider.dart';
 import 'package:islami/tabs/settings/settings_tab.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
@@ -27,13 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/default_bg.png'),
+          image: AssetImage(
+              'assets/images/${Provider.of<SettingsProvider>(context).backgroundImageName}.png'),
           fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('إسلامي'),
+          title: Text(AppLocalizations.of(context)!.islami),
         ),
         body: tabs[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
